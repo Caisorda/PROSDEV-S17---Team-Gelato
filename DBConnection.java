@@ -10,6 +10,7 @@ public class DBConnection {
 	private String	database	= "gelato";
 	private String	username	= "root";
 	private String	password	= "";
+        private static DBConnection instance;
         
         public static DBConnection getInstance() {
         if (instance == null) {
