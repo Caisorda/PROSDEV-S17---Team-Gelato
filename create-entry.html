@@ -9,18 +9,33 @@
 
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/skeleton.css">
+    <link type="text/css" rel="stylesheet" href="styles/style-create-entry.css">
   </head>
+
   <body>
-    <form>
-      <div class="row">
-        <div class="six columns">
-          <label for="post-title">Title</label>
-          <input class="u-full-width" type="text" placeholder="test@mailbox.com" id="post-title">
-        </div>
+    <div id="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="view-posts.html">Dessert Diary</a></li>
+        <li><a href="create-post.html">New Entry</a></li>
+      </ul>
+    </div>
+
+    <div class="form-container">
+      <div class="form-pic">
+        
       </div>
-      <label for="post-content">Content</label>
-      <textarea class="u-full-width" placeholder="Write your story here..." id="post-content"></textarea>
-      <input class="button-primary" type="submit" value="Submit">
-    </form>
+      <form>
+        <div class="row">
+          <div class="six columns">
+            <label for="post-title">Title</label>
+            <input class="u-full-width" type="text" placeholder="Post title" id="post-title">
+          </div>
+        </div>
+        <label for="post-content">Content</label>
+        <textarea class="u-full-width" placeholder="Write your story here..." id="post-content"></textarea>
+        <input class="button-primary" type="submit" value="Submit">
+      </form>
+    </div>
   </body>
 </html>
