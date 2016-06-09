@@ -5,6 +5,7 @@
 
 body{
     margin: 0;
+    font-family: monospace;
     background: #fff;
 }
 
@@ -248,4 +249,10 @@ body{
 
     .is-showing{
         background-color: #000;
+    }
+
+    .footers{
+      height: 200px;
+      width: 100%;
+      background-color: #e5c8db
     }
