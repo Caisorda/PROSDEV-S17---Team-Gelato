@@ -1,6 +1,6 @@
 @font-face {
     font-family: font1;
-    src: url(/fonts/font-1.otf);
+    src: url(../fonts/font-1.otf);
 }
 
 body{
@@ -8,8 +8,7 @@ body{
     font-family: font1;
     background: #fff;
 }
-
-#nav-bar{  
+#nav-bar{
     font-family: font1;
     text-transform: uppercase;
     position: fixed;
@@ -50,7 +49,7 @@ body{
     position: relative;
     height: 100vh;
     width: auto;
-    background-image: url(/imgs/nystreet.jpeg);
+    background-image: url(../imgs/nystreet.jpeg);
     background-size: cover;
     background-position: center;
     background-color: #fff;
@@ -65,7 +64,7 @@ body{
         min-width: 700px;
         height: 90%;
         max-height: 700px;
-        background-image: url(/imgs/icecreamhand.png);
+        background-image: url(../imgs/icecreamhand.png);
         background-position: bottom;
         background-size: contain;
         background-repeat: no-repeat;
@@ -81,7 +80,7 @@ body{
         vertical-align: middle;
         width: 400px;
         height: inherit;
-        background-image: url(/imgs/logo.png);
+        background-image: url(../imgs/logo.png);
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -111,7 +110,7 @@ body{
     height: 100vh;
     overflow: hidden;
     position: relative;
-    background-image: url(/imgs/wood-1.jpg);
+    background-image: url(../imgs/wood-1.jpg);
     background-attachment: fixed;
     text-align: center;
 }
@@ -122,14 +121,14 @@ body{
         height: 550px;
         margin-left: auto;
         margin-right: auto;
-        background-image: url(/imgs/waffle-top-cropped.png);
+        background-image: url(../imgs/waffle-top-cropped.png);
         background-size: contain;
         transition: all 0.3s ease;
         overflow: hidden;
     }
 
     .description p{
-        width: 350px;   
+        width: 350px;
         margin-left: auto;
         margin-right: auto;
         text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.46);
@@ -142,7 +141,7 @@ body{
         background-size: contain;
     }
     .description span{
-        font-size: 18px;   
+        font-size: 18px;
     }
 
     .desc-overlay{
@@ -170,7 +169,7 @@ body{
         height: inherit;
         right: -140px;
         top: 300px;
-        background-image: url(/imgs/gela-spoon1.png);
+        background-image: url(../imgs/gela-spoon1.png);
         background-size: contain;
         display: inline-block;
         background-repeat: no-repeat;
@@ -182,7 +181,7 @@ body{
         z-index: 3;
         width: 470px;
         height: inherit;
-        background-image: url(/imgs/ange-spoon1.png);
+        background-image: url(../imgs/ange-spoon1.png);
         background-size: contain;
         display: inline-block;
         background-repeat: no-repeat;
@@ -194,7 +193,7 @@ body{
         height: inherit;
         right: 800px;
         top: -90px;
-        background-image: url(/imgs/janica-spoon1.png);
+        background-image: url(../imgs/janica-spoon1.png);
         background-size: contain;
         display: inline-block;
         background-repeat: no-repeat;
@@ -206,7 +205,7 @@ body{
         height: inherit;
         right: 900px;
         top: 250px;
-        background-image: url(/imgs/kiko-spoon1.png);
+        background-image: url(../imgs/kiko-spoon1.png);
         background-size: contain;
         display: inline-block;
         background-repeat: no-repeat;
@@ -218,7 +217,7 @@ body{
         height: inherit;
         right: 880px;
         top: 470px;
-        background-image: url(/imgs/janine-spoon1.png);
+        background-image: url(../imgs/janine-spoon1.png);
         background-size: contain;
         display: inline-block;
         background-repeat: no-repeat;
@@ -234,19 +233,19 @@ body{
         position: absolute;
         left: 300px;
         background-color: #000;
-        border-radius: 100%; 
+        border-radius: 100%;
         width: 300px;
         height: 300px;
         margin-top: -250px;
         margin-left: -80px;
         background-color: beige;
-        background-image: url(/imgs/waffle-diagonal.png);
+        background-image: url(../imgs/waffle-diagonal.png);
         background-repeat: repeat;
         background-size: auto;
-        background-position: 100px 5px; 
+        background-position: 100px 5px;
         background-repeat: repeat;
     }
 
     .is-showing{
-        background-color: #000;   
+        background-color: #000;
     }
