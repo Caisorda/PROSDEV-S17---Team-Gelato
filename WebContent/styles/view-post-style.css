@@ -95,7 +95,11 @@ body{
     margin-top: 30px;
   }
   .comment-box .posts li{
-    background-color: #000;
+    background-color: #fff;
+    border-bottom: 8px;
+    padding: 10px;
+    border: solid 1px #efefef;
+    list-style: none;
   }
 
   .comment-box input{
