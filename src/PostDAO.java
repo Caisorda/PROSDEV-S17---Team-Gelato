@@ -29,24 +29,24 @@ public class PostDAO{
     public void addPost(Post post){
         //to do
 		Connection conn = (Connection) DBConnection.getConnection();
-        String q = "INSERT INTO POSTS(title,author,description,date) Values(?,?,?,?,?)";
+        String q = "INSERT INTO POSTS(title,author,description,date) Values(?,?,?,?)";
 		PreparedStatement stmt;
 		int postid;
 		try {
-			stmt = conn.prepareStatement("SELECT MAX(id) as id from posts");
-			ResultSet rs = stmt.executeQuery();
-			if(rs.next()){
-				postid = rs.getInt("id") + 1;
-			}else{
-				postid = 1;
-			}
+//			stmt = conn.prepareStatement("SELECT MAX(id) as id from posts");
+//			ResultSet rs = stmt.executeQuery();
+//			if(rs.next()){
+//				postid = rs.getInt("id") + 1;
+//			}else{
+//				postid = 1;
+//			}
 			stmt = conn.prepareStatement(q);
-			stmt.setInt(1, postid);
-			stmt.setString(2,post.getTitle());
-			stmt.setString(3,post.getAuthor());
-			stmt.setString(4,post.getDescription());
-			stmt.setString(5,post.getDate());
-			stmt.executeQuery();
+//			stmt.setInt(1, postid);
+			stmt.setString(1,post.getTitle());
+			stmt.setString(2,post.getAuthor());
+			stmt.setString(3,post.getDescription());
+			stmt.setString(4,post.getDate());
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

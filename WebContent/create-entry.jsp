@@ -31,15 +31,15 @@
         <div class="row">
           <div class="six columns">
             <label for="post-title">Title</label>
-            <input class="u-full-width" type="text" placeholder="Post title" id="title">
+            <input class="u-full-width" type="text" placeholder="Post title" id="title" name = "title">
           </div>
           <div class="six columns">
             <label for="post-title">Reviewer</label>
-            <input class="u-full-width" type="text" placeholder="Name" id="author">
+            <input class="u-full-width" type="text" placeholder="Name" id="author" name = "author">
           </div>
         </div>
         <label for="post-content">Content</label>
-        <textarea class="u-full-width" placeholder="Write your sweet story here..." id="description"></textarea>
+        <textarea class="u-full-width" placeholder="Write your sweet story here..." id="description" name = "description"></textarea>
         <input class="button-primary" type="submit" value="Submit">
       </form>
     </div>
