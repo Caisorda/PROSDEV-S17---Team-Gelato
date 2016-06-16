@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ange;
 
 /**
  *
@@ -16,16 +15,20 @@ public class Post {
     private String date;
     private int id;
 
-    public Post(String title, String author, String description, String date) {
-        this.title = title;
+    public Post(int id, String title, String author, String description, String date) {
+        this.id = id;
+    	this.title = title;
         this.author = author;
         this.description = description;
         this.date = date;
     }
 
-    public Post()
+    public Post(String title, String author, String description, String date)
     {
-        
+    	this.title = title;
+        this.author = author;
+        this.description = description;
+        this.date = date;
     }
     public String getTitle() {
         return title;

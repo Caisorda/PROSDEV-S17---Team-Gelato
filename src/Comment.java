@@ -6,11 +6,18 @@ public class Comment {
 	private Date date;
 	private int postId;
 	
+	public Comment(int id, String details, Date date, int postId) {
+		this.details = details;
+		this.date = date;
+		this.postId = postId;
+		this.id = id;
+	}
+	
 	public Comment(String details, Date date, int postId) {
 		this.details = details;
 		this.date = date;
 		this.postId = postId;
-	}
+	} 
 	
 	public int getId() {
 		return id;
