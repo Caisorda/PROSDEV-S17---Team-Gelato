@@ -1,8 +1,25 @@
 
+package database;
+import java.sql.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConnection {
+	private String	driverName	= "com.mysql.jdbc.Driver";
+	private String	url		= "jdbc:mysql://localhost:3306/";
+	private String	database	= "gelato";
+	private String	username	= "root";
+	private String	password	= "";
+   private static DBConnection instance;
+        
+        public static DBConnection getInstance() {
+        if (instance == null) {
+            instance = new DBConnection();
+        }
+
+        return instance;
+    }
 
     private static Connection connect;
 
