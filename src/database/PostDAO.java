@@ -1,3 +1,4 @@
+package database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -5,18 +6,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import models.Post;
+
 public class PostDAO{
-    public Iterator getPosts(int postid){
+    public Iterator getPosts(){
         ArrayList<Post> posts = new ArrayList();
         //to do title,author,description,date
         Connection conn = (Connection) DBConnection.getConnection();
-        String q = "SELECT * FROM POSTS";
+        String q = "SELECT * FROM posts";
 		PreparedStatement stmt;
 		try {
 			stmt = conn.prepareStatement(q);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
-				posts.add(new Post(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getString("description"), null));
+				posts.add(new Post(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getString("description"), rs.getString("date")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -28,25 +31,27 @@ public class PostDAO{
     
     public void addPost(Post post){
         //to do
-		Connection conn = (Connection) DBConnection.getConnection();
-        String q = "INSERT INTO POSTS(title,author,description,date) Values(?,?,?,?,?)";
+		Connection conn = (Connection)DBConnection.getConnection();
+        String q;
 		PreparedStatement stmt;
 		int postid;
 		try {
-			stmt = conn.prepareStatement("SELECT MAX(id) as id from posts");
+			q = "SELECT MAX(id) as id from posts";
+			stmt = conn.prepareStatement(q);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()){
 				postid = rs.getInt("id") + 1;
 			}else{
 				postid = 1;
 			}
+			q = "INSERT INTO POSTS(id,title,author,description,date) values(?,?,?,?,?)";
 			stmt = conn.prepareStatement(q);
 			stmt.setInt(1, postid);
 			stmt.setString(2,post.getTitle());
 			stmt.setString(3,post.getAuthor());
 			stmt.setString(4,post.getDescription());
 			stmt.setString(5,post.getDate());
-			stmt.executeQuery();
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

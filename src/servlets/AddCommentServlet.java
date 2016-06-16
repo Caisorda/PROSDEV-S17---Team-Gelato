@@ -1,8 +1,6 @@
+package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,34 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "PostServlet", urlPatterns = {"/PostServlet"})
-public class AddPostServlet extends HttpServlet {
+import database.CommentDAO;
+import models.Comment;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet(name = "AddCommentServlet", urlPatterns = {"/AddCommentServlet"})
+public class AddCommentServlet extends HttpServlet {
+
+ 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        PostDAO postDAO = new PostDAO();
+        CommentDAO commentDAO = new CommentDAO();
 //        String operation = request.getAttribute("operation");
 //        if (operation.equalsIgnoreCase("add")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewpost.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewspecificpost.jsp");
             PrintWriter out= response.getWriter();
-            String title = request.getParameter("title");
-            String author = request.getParameter("author");
-            String description = request.getParameter("description");
-//            String date = request.getParameter("date");
-            String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-            postDAO.addPost(new Post(title, author, description, date));
+            String details = request.getParameter("details");
+//            String author = request.getParameter("date");
+            int postId = Integer.parseInt(request.getParameter("postId"));
+            commentDAO.addComment(new Comment(details, null, postId));
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Successfully added post!');");
+            out.println("alert('Successfully added comment!');");
             out.println("location='index.html';");
             out.println("</script>");
 //        }else if (operation.equalsIgnoreCase("edit")) {
@@ -47,21 +38,21 @@ public class AddPostServlet extends HttpServlet {
 //            String author = request.getParameter("author");
 //            String description = request.getParameter("description");
 //            String date = request.getParameter("date");
-//            postDAO.editPost(new Post(title, author, description, date));
+//            commentDAO.editComment(new Post(title, author, description, date));
 //            out.println("<script type=\"text/javascript\">");
-//            out.println("alert('Successfully edited post!');");
+//            out.println("alert('Successfully edited comment!');");
 //            out.println("location='index.html';");
 //            out.println("</script>");
 //        }else if (operation.equalsIgnoreCase("delete")) {
 //            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
 //            PrintWriter out= response.getWriter();
-//            String postid = request.getAttribute("postid").toString();
-//            postDAO.deletePost(postid);
+//            String commentid = request.getAttribute("commentid").toString();
+//            commentDAO.deleteComment(Integer.parseInt(commentid));
 //            out.println("<script type=\"text/javascript\">");
-//            out.println("alert('Successfully deleted post!');");
+//            out.println("alert('Successfully deleted comment!');");
 //            out.println("location='index.html';");
 //            out.println("</script>");
-      //  }
+//        }
       
     }
 

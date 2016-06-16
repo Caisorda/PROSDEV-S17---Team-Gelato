@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.ArrayList"%>
+    <%@page import="java.util.Iterator"%>
+    <%@page import="models.Post"%>
+    <%@page import="database.PostDAO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -16,6 +20,20 @@
     <link type="text/css" rel="stylesheet" href="styles/view-posts-style.css">
 
     <link rel="icon" type="image/png" href="imgs/favicon.png">
+    
+    <%
+    PostDAO postDAO = new PostDAO();
+    ArrayList<Post> posts = new ArrayList();
+    for(Iterator i = postDAO.getPosts(); i.hasNext();){
+    	posts.add((Post)i.next());
+    }
+    int pagenumber;
+    if(session.getAttribute("page") != null){
+    	pagenumber = (int)session.getAttribute("page");
+    	if(posts.size() <= (pagenumber+1)*5)
+    		pagenumber = 0;
+    }else pagenumber = 0;
+    %>
   </head>
   <body>
     <div id="nav-bar">
@@ -29,47 +47,27 @@
 
     </div>
     <div class="post-container">
+    <%
+    	pagenumber++;
+    	int bound = pagenumber * 5;
+    	if(bound > posts.size())
+    		bound = posts.size();
+    	for(int i = (pagenumber-1)*5; i < bound; i++){
+ 			String details;
+ 			if(posts.get(i).getDescription().length()>42)
+ 	        	  details = posts.get(i).getDescription().substring(0, 42) + "...";
+ 			else details = posts.get(i).getDescription();
+    %>
       <div class="entry">
-        <h2>Sakura x Charcoal Ice-Cream!</h2>
+        <h2><%=posts.get(i).getTitle()%></h2>
         <hr />
-        <h4>Gela Acorda</h4>
+        <h4><%=posts.get(i).getAuthor()%></h4>
         <p>
-          Another Japanese convience store made its way...
+          <%=details%>
         </p>
       </div>
-      <div class="entry">
-        <h2>Yummy Bingsoo in Town</h2>
-        <hr />
-        <h4>Angeline Tan</h4>
-        <p>
-          Bingsoo, Korea's version of <i>Halo-halo</i> is a staple in...
-        </p>
-      </div>
-      <div class="entry">
-        <h2>McDonald's new Matcha Oreo Flurry</h2>
-        <hr />
-        <h4>Janine Tan</h4>
-        <p>
-          The popularity of Matcha flavored food...
-        </p>
-      </div>
-      <div class="entry">
-        <h2>Search for the best Taho</h2>
-        <hr />
-        <h4>Kiko Salceda</h4>
-        <p>
-          <i>Tahooooooo!!</i> The only reason for me to...
-        </p>
-      </div>
-      <div class="entry">
-        <h2>Missing Melon Pan</h2>
-        <hr />
-        <h4>Janica Lam</h4>
-        <p>
-          I really miss Melon Pan! First time I ...
-        </p>
-      </div>
-      <div class="next-page">
+      <%} %>
+      <div action="NextPageServlet" method="post" class="next-page">
         <h1>See more posts</h1>
       </div>
     </div>

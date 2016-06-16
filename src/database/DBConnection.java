@@ -1,3 +1,4 @@
+package database;
 import java.sql.*;
 
 import java.util.*;
@@ -9,8 +10,8 @@ public class DBConnection {
 	private String	url		= "jdbc:mysql://localhost:3306/";
 	private String	database	= "gelato";
 	private String	username	= "root";
-	private String	password	= "";
-        private static DBConnection instance;
+	private String	password	= "Pr0crastinate";
+   private static DBConnection instance;
         
         public static DBConnection getInstance() {
         if (instance == null) {
