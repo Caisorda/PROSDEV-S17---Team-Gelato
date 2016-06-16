@@ -65,7 +65,7 @@ public class PostDAO{
 			stmt.setString(3,post.getDescription());
 			stmt.setString(4,post.getDate());
 			stmt.setInt(5,post.getId());
-			stmt.executeQuery();
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

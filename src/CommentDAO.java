@@ -29,23 +29,22 @@ public class CommentDAO{
     
     public void addComment(Comment comment){
     	Connection conn = (Connection) DBConnection.getConnection();
-        String q = "INSERT INTO COMMENTS(details,date,postId) Values(?,?,?,?)";
+        String q = "INSERT INTO COMMENTS(details,date,postId) Values(?,?,?)";
 		PreparedStatement stmt;
 		int commentid;
 		try {
-			stmt = conn.prepareStatement("SELECT MAX(id) as id from comments");
-			ResultSet rs = stmt.executeQuery();
-			if(rs.next()){
-				commentid = rs.getInt("id") + 1;
-			}else{
-				commentid = 1;
-			}
+//			stmt = conn.prepareStatement("SELECT MAX(id) as id from comments");
+//			ResultSet rs = stmt.executeQuery();
+//			if(rs.next()){
+//				commentid = rs.getInt("id") + 1;
+//			}else{
+//				commentid = 1;
+//			}
 			stmt = conn.prepareStatement(q);
-			stmt.setInt(1,commentid);
-			stmt.setString(2,comment.getDetails());
-			stmt.setDate(3,null);
-			stmt.setInt(4,comment.getPostId());
-			stmt.executeQuery();
+			stmt.setString(1,comment.getDetails());
+			stmt.setDate(2,comment.getDate());
+			stmt.setInt(3,comment.getPostId());
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +58,7 @@ public class CommentDAO{
 		try {
 			stmt = conn.prepareStatement(q);
 			stmt.setString(1,comment.getDetails());
-			stmt.setDate(2,null);
+			stmt.setDate(2,comment.getDate());
 			stmt.setInt(3,comment.getPostId());
 			stmt.setInt(4, comment.getId());
 			stmt.executeQuery();
