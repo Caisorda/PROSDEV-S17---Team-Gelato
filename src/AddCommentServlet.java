@@ -7,49 +7,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "CommentServlet", urlPatterns = {"/CommentServlet"})
-public class CommentServlet extends HttpServlet {
+@WebServlet(name = "AddCommentServlet", urlPatterns = {"/AddCommentServlet"})
+public class AddCommentServlet extends HttpServlet {
 
  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         CommentDAO commentDAO = new CommentDAO();
-        String operation = request.getAttribute("operation");
-        if (operation.equalsIgnoreCase("add")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+//        String operation = request.getAttribute("operation");
+//        if (operation.equalsIgnoreCase("add")) {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewspecificpost.jsp");
             PrintWriter out= response.getWriter();
-            String title = request.getParameter("title");
-            String author = request.getParameter("author");
-            String description = request.getParameter("description");
-            String date = request.getParameter("date");
-            commentDAO.addComment(new Comment(title, author, description, date));
+            String details = request.getParameter("details");
+//            String author = request.getParameter("date");
+            int postId = request.getParameter("postId");
+            commentDAO.addComment(new Comment(details, null, postId));
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Successfully added comment!');");
             out.println("location='index.html';");
             out.println("</script>");
-        }else if (operation.equalsIgnoreCase("edit")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
-            PrintWriter out= response.getWriter();
-            String title = request.getParameter("title");
-            String author = request.getParameter("author");
-            String description = request.getParameter("description");
-            String date = request.getParameter("date");
-            commentDAO.editComment(new Post(title, author, description, date));
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Successfully edited comment!');");
-            out.println("location='index.html';");
-            out.println("</script>");
-        }else if (operation.equalsIgnoreCase("delete")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
-            PrintWriter out= response.getWriter();
-            String commentid = request.getAttribute("commentid").toString();
-            commentDAO.deleteComment(Integer.parseInt(commentid));
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Successfully deleted comment!');");
-            out.println("location='index.html';");
-            out.println("</script>");
-        }
+//        }else if (operation.equalsIgnoreCase("edit")) {
+//            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+//            PrintWriter out= response.getWriter();
+//            String title = request.getParameter("title");
+//            String author = request.getParameter("author");
+//            String description = request.getParameter("description");
+//            String date = request.getParameter("date");
+//            commentDAO.editComment(new Post(title, author, description, date));
+//            out.println("<script type=\"text/javascript\">");
+//            out.println("alert('Successfully edited comment!');");
+//            out.println("location='index.html';");
+//            out.println("</script>");
+//        }else if (operation.equalsIgnoreCase("delete")) {
+//            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+//            PrintWriter out= response.getWriter();
+//            String commentid = request.getAttribute("commentid").toString();
+//            commentDAO.deleteComment(Integer.parseInt(commentid));
+//            out.println("<script type=\"text/javascript\">");
+//            out.println("alert('Successfully deleted comment!');");
+//            out.println("location='index.html';");
+//            out.println("</script>");
+//        }
       
     }
 

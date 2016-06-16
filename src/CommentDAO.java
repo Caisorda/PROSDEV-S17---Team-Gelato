@@ -31,11 +31,20 @@ public class CommentDAO{
     	Connection conn = (Connection) DBConnection.getConnection();
         String q = "INSERT INTO COMMENTS(details,date,postId) Values(?,?,?,?)";
 		PreparedStatement stmt;
+		int commentid;
 		try {
+			stmt = conn.prepareStatement("SELECT MAX(id) as id from comments");
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				commentid = rs.getInt("id") + 1;
+			}else{
+				commentid = 1;
+			}
 			stmt = conn.prepareStatement(q);
-			stmt.setString(1,comment.getDetails());
-			stmt.setDate(2,null);
-			stmt.setInt(3,comment.getPostId());
+			stmt.setInt(1,commentid);
+			stmt.setString(2,comment.getDetails());
+			stmt.setDate(3,null);
+			stmt.setInt(4,comment.getPostId());
 			stmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
