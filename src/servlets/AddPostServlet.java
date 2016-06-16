@@ -32,7 +32,7 @@ public class AddPostServlet extends HttpServlet {
         PostDAO postDAO = new PostDAO();
 //        String operation = request.getAttribute("operation");
 //        if (operation.equalsIgnoreCase("add")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/viewpost.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/view-posts.jsp");
             PrintWriter out= response.getWriter();
             String title = request.getParameter("title");
             String author = request.getParameter("author");
@@ -42,7 +42,7 @@ public class AddPostServlet extends HttpServlet {
             postDAO.addPost(new Post(title, author, description, date));
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Successfully added post!');");
-            out.println("location='index.html';");
+            out.println("location='view-posts.jsp';");
             out.println("</script>");
 //        }else if (operation.equalsIgnoreCase("edit")) {
 //            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
