@@ -27,7 +27,7 @@
       <div class="form-pic">
 
       </div>
-      <form>
+      <form action = "PostServlet" method = "post">
         <div class="row">
           <div class="six columns">
             <label for="post-title">Title</label>
