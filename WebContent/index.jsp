@@ -24,7 +24,7 @@
       <ul>
         <li><a href="#header-box">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="view-posts.jsp">Dessert Diary</a></li>
+        <li><a href="view-post.jsp">Dessert Diary</a></li>
         <li><a href="create-entry.jsp">New Entry</a></li>
       </ul>
     </div>

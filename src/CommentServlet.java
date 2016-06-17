@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.CommentDAO;
+import models.Comment;
+
 @WebServlet(name = "CommentServlet", urlPatterns = {"/CommentServlet"})
 public class CommentServlet extends HttpServlet {
 
@@ -15,20 +18,20 @@ public class CommentServlet extends HttpServlet {
             throws ServletException, IOException {
         
         CommentDAO commentDAO = new CommentDAO();
-        String operation = request.getAttribute("operation");
-        if (operation.equalsIgnoreCase("add")) {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+        //String operation = request.getAttribute("operation");
+        //if (operation.equalsIgnoreCase("add")) {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/view-post.jsp");
             PrintWriter out= response.getWriter();
-            String title = request.getParameter("title");
+            String title = request.getParameter("comment");/*
             String author = request.getParameter("author");
-            String description = request.getParameter("description");
-            String date = request.getParameter("date");
-            commentDAO.addComment(new Comment(title, author, description, date));
+            String description = request.getParameter("description");*/
+            /*String date = request.getParameter("date");*/
+            commentDAO.addComment(new Comment(0, title, null, 0));
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Successfully added comment!');");
             out.println("location='index.html';");
             out.println("</script>");
-        }else if (operation.equalsIgnoreCase("edit")) {
+        /*}else if (operation.equalsIgnoreCase("edit")) {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
             PrintWriter out= response.getWriter();
             String title = request.getParameter("title");
@@ -50,7 +53,7 @@ public class CommentServlet extends HttpServlet {
             out.println("location='index.html';");
             out.println("</script>");
         }
-      
+      */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
