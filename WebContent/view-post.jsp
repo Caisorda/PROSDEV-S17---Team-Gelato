@@ -36,22 +36,20 @@
     </div>
 		<div class="comment-box">
       <h4>Comments</h4>
-      <form class="comment-textbox">
-          <input type="text" class="comment-textbox-field" placeholder="Let us know what you think."></input>
+      <form class="comment-textbox" action = "CommentServlet" method = "post">
+          <input type="text" class="textbox" placeholder="Let us know what you think." name = "comment"></input>
       </form>
       <div class="post-button" onclick="postComment()">Post</div>
       <ul class="posts">
-        <li>
-          hi
-        </li>
       </ul>
 		</div>
+		<script src="js/jquery-2.2.3.min.js"></script>
     <script>
       function postComment(){
           var comment = $('.textbox').val();
           if(comment != ""){
               $('<li>').text(comment).appendTo('.posts');
-              $('.comment-textbox-field').val('');
+              $('.textbox').val('');
           }
       }
     </script>
