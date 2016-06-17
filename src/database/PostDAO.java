@@ -12,7 +12,7 @@ public class PostDAO{
     public Iterator getPosts(){
         ArrayList<Post> posts = new ArrayList();
         //to do title,author,description,date
-        Connection conn = (Connection) DBConnection.getConnection();
+        Connection conn = DBConnection.getConnection();
         String q = "SELECT * FROM posts";
 		PreparedStatement stmt;
 		try {
@@ -27,6 +27,26 @@ public class PostDAO{
 		}
 //        ResultSetIterator rt = new ResultSetIterator(rs);
         return posts.iterator();
+    }
+    
+    public Post getPost(int postid){
+        //to do title,author,description,date
+        Connection conn = DBConnection.getConnection();
+        String q = "SELECT * FROM posts WHERE id = ?";
+		PreparedStatement stmt;
+		try {
+			stmt = conn.prepareStatement(q);
+			stmt.setInt(1, postid);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				return new Post(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getString("description"), rs.getString("date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//        ResultSetIterator rt = new ResultSetIterator(rs);
+        return null;
     }
     
     public void addPost(Post post){

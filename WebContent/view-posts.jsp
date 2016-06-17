@@ -28,12 +28,24 @@
     	posts.add((Post)i.next());
     }
     int pagenumber;
-    if(session.getAttribute("page") != null){
-    	pagenumber = (int)session.getAttribute("page");
+    if(request.getAttribute("page") != null){
+    	pagenumber = (int)request.getAttribute("page");
     	if(posts.size() <= (pagenumber+1)*5)
     		pagenumber = 0;
     }else pagenumber = 0;
     %>
+    <script>
+    $(document).on("click","#next", function(){
+        $.ajax({
+           type: "POST",
+           url: "NextPageServlet",
+            cache: false,
+            success: function(){
+                location.reload();  
+            }
+        });
+    });
+    </script>
   </head>
   <body>
     <div id="nav-bar">
@@ -48,27 +60,36 @@
     </div>
     <div class="post-container">
     <%
-    	pagenumber++;
+    	/*pagenumber++;
     	int bound = pagenumber * 5;
     	if(bound > posts.size())
     		bound = posts.size();
-    	for(int i = (pagenumber-1)*5; i < bound; i++){
+    	for(int i = (pagenumber-1)*5; i < bound; i++){*/
+    		for(int i = 0; i < posts.size(); i++){
  			String details;
  			if(posts.get(i).getDescription().length()>42)
  	        	  details = posts.get(i).getDescription().substring(0, 42) + "...";
  			else details = posts.get(i).getDescription();
+ 			
+ 			
     %>
       <div class="entry">
+      <a href='view-post.jsp?postid=<%=posts.get(i).getId()%>'>
         <h2><%=posts.get(i).getTitle()%></h2>
         <hr />
         <h4><%=posts.get(i).getAuthor()%></h4>
         <p>
           <%=details%>
         </p>
+        </a>
       </div>
-      <%} %>
-      <div action="NextPageServlet" method="post" class="next-page">
-        <h1>See more posts</h1>
+      <%} 
+    	session.setAttribute("page", null);
+      %>
+      <div class="next-page">
+      	<a href='view-posts.jsp?page=<%=pagenumber+1%>'>
+      		<h1>See more posts</h1>
+      	</a>
       </div>
     </div>
   </body>

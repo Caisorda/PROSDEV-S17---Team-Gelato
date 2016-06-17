@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="models.Post"%>
+    <%@page import="database.PostDAO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -16,6 +18,12 @@
     <link type="text/css" rel="stylesheet" href="styles/view-post-style.css">
 
     <link rel="icon" type="image/png" href="imgs/favicon.png">
+    <%
+    Post post;
+    PostDAO postDAO = new PostDAO();
+    int id = Integer.parseInt(request.getParameter("postid"));
+    post = postDAO.getPost(id);
+    %>
   </head>
   <body>
     <div id="nav-bar">
@@ -28,11 +36,9 @@
     <div class="header-pic">
     </div>
     <div class="post-container">
-			<h1 class="post-title">This is a post title</h1>
-			<h4 class="post-author">by <span>Angeline Tan</span></h4>
-			<p class="post-content">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</p>
+			<h1 class="post-title"><%=post.getTitle()%></h1>
+			<h4 class="post-author">by <span><%=post.getAuthor()%></span></h4>
+			<p class="post-content"><%=post.getDescription()%></p>
     </div>
 		<div class="comment-box">
       <h4>Comments</h4>
